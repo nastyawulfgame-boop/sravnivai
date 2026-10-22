@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каталог товаров</title>
+  <link rel="stylesheet" href="stailestov.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="tovari.html">Сравнивай<span>+</span></a>
+    <nav><a href="tovari.html">Главная</a><a href="login.html">Аккаунт</a><a href="#catalog">Мои товары</a></nav>
+  </header>
+  <main class="page-shell">
+    <section class="page-heading">
+      <div><p class="eyebrow">ВАШЕ ПРОСТРАНСТВО</p><h1>Каталог товаров</h1><p class="subtitle">Создавайте списки и собирайте нужные товары в одном месте.</p></div>
+      <div class="heading-mark" aria-hidden="true">▦</div>
+    </section>
+    <section class="file-controls">
+      <label for="file-input" class="btn btn-light">Импортировать JSON</label>
+      <input type="file" id="file-input" accept=".json,application/json">
+      <button class="btn btn-dark" onclick="downloadCatalog()">Экспорт каталога ↗</button>
+    </section>
+    <div class="main-container" id="catalog">
+      <aside class="sidebar">
+        <div class="sidebar-heading"><div><p class="eyebrow">ОРГАНИЗАЦИЯ</p><h2>Мои списки</h2></div><span class="count-pill" id="lists-count">0</span></div>
+        <ul class="list-group" id="lists-container"></ul>
+        <form class="add-list-form" id="add-list-form">
+          <input type="text" id="new-list-name" placeholder="Например, Для дома" maxlength="60" aria-label="Название нового списка">
+          <button class="btn btn-accent" type="submit" aria-label="Создать список">+</button>
+        </form>
+        <p class="sidebar-note">Списки сохраняются в этом браузере автоматически.</p>
+      </aside>
+      <section class="content-area">
+        <div class="content-header"><div><p class="eyebrow">ВАША ПОДБОРКА</p><h2 id="current-list-title">Выберите список</h2><p id="products-summary" class="subtitle">Выберите список слева или создайте новый.</p></div><button class="btn btn-accent" id="add-product-btn" onclick="addNewProduct()" style="display:none">+ Добавить товар</button></div>
+        <div class="product-grid" id="products-container"></div>
+      </section>
+    </div>
+  </main>
+  <script src="scripttov.js"></script>
+</body>
+</html>
