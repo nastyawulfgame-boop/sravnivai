@@ -1,4 +1,15 @@
 (() => {
+  const imageForTitle = title => {
+    const t = String(title || '').toLocaleLowerCase('ru');
+    const rules = [
+      [/наушник|гарнитур/, 'headphones.jpg'], [/смартфон|чехол/, 'smartphone.jpg'], [/ноутбук|клавиатур|мышь|планшет/, 'laptop.jpg'], [/часы/, 'watch.jpg'],
+      [/пальто|куртк|футболк|джинс/, 'clothing.jpg'], [/кроссовк|обув|сумк|рюкзак|кошелёк|очки/, 'fashion.jpg'],
+      [/ламп|кружк|плед|органайзер|постельн/, 'home.jpg'], [/крем|тушь|бальзам|парфюм|расчёск/, 'beauty.jpg'],
+      [/коврик|бутылк|скакалк|фитнес|резинк/, 'fitness.jpg']
+    ];
+    const match = rules.find(([re]) => re.test(t));
+    return 'products/images/' + (match ? match[1] : 'accessories.jpg');
+  };
   const STORAGE_KEY = 'myCatalogData';
   const defaults = [{id:'list_1',name:'Избранное',products:[
     {title:'Беспроводные наушники',description:'Качественный звук и активное шумоподавление.',price:'4 990 ₽'},
@@ -13,9 +24,76 @@
     id: String(l.id || ('list_'+Date.now()+'_'+i)),
     name: String(l.name || 'Новый список'),
     products: Array.isArray(l.products) ? l.products.map(p=>({
-      title:String(p.title || 'Без названия'), description:String(p.description || ''), price:String(p.price || '0 ₽')
+      title:String(p.title || 'Без названия'), description:String(p.description || ''), price:String(p.price || '0 ₽'), image:String(p.image || imageForTitle(p.title || ''))
     })) : []
   }));
+
+  // Демонстрационные списки добавляются один раз и не дублируются при следующих посещениях.
+  // В уже существующем каталоге пользовательские списки и товары сохраняются.
+  const DEMO_SEED_KEY = 'myCatalogDemoSeed_v2';
+  const demoLists = [
+    { name:'Электроника', products:[
+      {title:'Смартфон Samsung Galaxy A55',description:'Смартфон с ярким экраном и камерой высокого разрешения.',price:'34 990 ₽'},
+      {title:'Ноутбук Lenovo IdeaPad Slim 3',description:'Ноутбук для учёбы, работы и повседневных задач.',price:'49 990 ₽'},
+      {title:'Планшет Xiaomi Redmi Pad SE',description:'Планшет для видео, чтения и учёбы.',price:'17 990 ₽'},
+      {title:'Игровая мышь Logitech G102',description:'Проводная мышь с настраиваемой подсветкой.',price:'2 490 ₽'},
+      {title:'Механическая клавиатура Redragon Kumara',description:'Компактная клавиатура для игр и набора текста.',price:'3 990 ₽'}
+    ]},
+    { name:'Одежда и обувь', products:[
+      {title:'Однотонное пальто прямого кроя',description:'Базовое демисезонное пальто в минималистичном стиле.',price:'5 990 ₽'},
+      {title:'Белая базовая футболка',description:'Хлопковая футболка свободного кроя.',price:'990 ₽'},
+      {title:'Прямые синие джинсы',description:'Повседневные джинсы с высокой посадкой.',price:'2 790 ₽'},
+      {title:'Чёрные кроссовки',description:'Универсальные кроссовки для прогулок.',price:'3 490 ₽'},
+      {title:'Кожаная куртка-косуха',description:'Куртка в байкерском стиле с металлической фурнитурой.',price:'6 990 ₽'}
+    ]},
+    { name:'Дом и уют', products:[
+      {title:'Настольная LED-лампа',description:'Лампа с регулировкой яркости для рабочего стола.',price:'1 790 ₽'},
+      {title:'Керамическая кружка 350 мл',description:'Глазурованная кружка для чая и кофе.',price:'490 ₽'},
+      {title:'Мягкий плед',description:'Уютный плед для дивана или кровати.',price:'1 290 ₽'},
+      {title:'Органайзер для косметики',description:'Настольный органайзер с несколькими отделениями.',price:'890 ₽'},
+      {title:'Комплект постельного белья',description:'Комплект из приятной к телу ткани для двуспальной кровати.',price:'3 490 ₽'}
+    ]},
+    { name:'Красота и уход', products:[
+      {title:'Увлажняющий крем для лица',description:'Крем для ежедневного ухода за кожей.',price:'1 190 ₽'},
+      {title:'Тушь для ресниц',description:'Тушь для объёма и разделения ресниц.',price:'790 ₽'},
+      {title:'Увлажняющий бальзам для губ',description:'Бальзам для ежедневного ухода за губами.',price:'350 ₽'},
+      {title:'Парфюмированный спрей',description:'Лёгкий аромат для повседневного использования.',price:'1 490 ₽'},
+      {title:'Расчёска для волос',description:'Расчёска для бережного распутывания волос.',price:'590 ₽'}
+    ]},
+    { name:'Спорт и отдых', products:[
+      {title:'Йога-коврик',description:'Нескользящий коврик для растяжки и домашних тренировок.',price:'1 590 ₽'},
+      {title:'Бутылка для воды 750 мл',description:'Многоразовая бутылка для тренировок и прогулок.',price:'690 ₽'},
+      {title:'Рюкзак городской',description:'Вместительный рюкзак для учёбы и коротких поездок.',price:'2 490 ₽'},
+      {title:'Скакалка спортивная',description:'Скакалка с регулируемой длиной для кардиотренировок.',price:'390 ₽'},
+      {title:'Фитнес-резинки набор',description:'Набор эластичных лент для домашних упражнений.',price:'790 ₽'}
+    ]},
+    { name:'Аксессуары', products:[
+      {title:'Солнцезащитные очки',description:'Очки в универсальной оправе для солнечной погоды.',price:'1 490 ₽'},
+      {title:'Наручные часы классические',description:'Лаконичные часы на каждый день.',price:'2 990 ₽'},
+      {title:'Сумка через плечо',description:'Компактная сумка для телефона, ключей и мелочей.',price:'1 790 ₽'},
+      {title:'Кошелёк компактный',description:'Небольшой кошелёк с отделениями для карт.',price:'990 ₽'},
+      {title:'Чехол для смартфона',description:'Защитный чехол с нескользящей поверхностью.',price:'590 ₽'}
+    ]}
+  ];
+  try {
+    if (!localStorage.getItem(DEMO_SEED_KEY)) {
+      demoLists.forEach((demo, index) => {
+        let existing = catalogData.find(list => list.name.toLocaleLowerCase('ru') === demo.name.toLocaleLowerCase('ru'));
+        if (!existing) {
+          existing = { id:'demo_'+(index+1), name:demo.name, products:[] };
+          catalogData.push(existing);
+        }
+        demo.products.forEach(product => {
+          if (!existing.products.some(item => item.title.toLocaleLowerCase('ru') === product.title.toLocaleLowerCase('ru'))) {
+            existing.products.push({...product, image:imageForTitle(product.title)});
+          }
+        });
+      });
+      localStorage.setItem(DEMO_SEED_KEY, '1');
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(catalogData));
+    }
+  } catch { /* Каталог продолжит работать даже при недоступном localStorage. */ }
+
   let activeListId = catalogData[0]?.id || null;
   const $ = id => document.getElementById(id);
   const escapeText = value => String(value ?? '');
@@ -26,6 +104,10 @@
     if(label) button.setAttribute('aria-label',label);
     button.addEventListener('click', action); return button;
   }
+  // Доступ для поиска распознанного объекта по всем сохранённым спискам.
+  window.getAllCatalogProducts = () => catalogData.flatMap(list => list.products.map(product => ({
+    ...product, listName: list.name, listId: list.id
+  })));
   window.selectList = id => { activeListId=id; render(); };
   window.createNewList = () => {
     const input=$('new-list-name'), name=input.value.trim(); if(!name) { input.focus(); return; }
@@ -44,7 +126,7 @@
     const title=prompt('Название товара:'); if(title===null || !title.trim()) return;
     const description=prompt('Описание товара (необязательно):','') ?? '';
     const price=prompt('Цена товара:','0 ₽'); if(price===null) return;
-    list.products.push({title:title.trim(),description:description.trim(),price:price.trim() || '0 ₽'});
+    list.products.push({title:title.trim(),description:description.trim(),price:price.trim() || '0 ₽',image:imageForTitle(title.trim())});
     save(); render();
   };
   window.deleteProduct = index => {
@@ -89,7 +171,7 @@
     if(!list.products.length) { const empty=document.createElement('div'); empty.className='empty-state'; empty.textContent='В этом списке пока нет товаров. Нажмите «Добавить товар», чтобы начать.'; container.append(empty); return; }
     list.products.forEach((product,index)=>{
       const card=document.createElement('article'); card.className='product-card';
-      const visual=document.createElement('div'); visual.className='product-image'; visual.textContent='✳';
+      const visual=document.createElement('div'); visual.className='product-image'; const photo=document.createElement('img'); photo.src=product.image || imageForTitle(product.title); photo.alt=escapeText(product.title); photo.loading='lazy'; photo.onerror=()=>{photo.onerror=null;photo.src='products/images/accessories.jpg';}; visual.append(photo);
       const info=document.createElement('div'); info.className='product-info';
       const title=document.createElement('h3'); title.className='product-title'; title.textContent=escapeText(product.title);
       const desc=document.createElement('p'); desc.className='product-description'; desc.textContent=escapeText(product.description || 'Описание не добавлено.');
@@ -108,7 +190,7 @@
       try {
         const imported=JSON.parse(reader.result);
         if(!Array.isArray(imported) || imported.some(l=>!l || typeof l.name!=='string' || !Array.isArray(l.products))) throw Error();
-        catalogData=imported.map((l,i)=>({id:String(l.id||('import_'+Date.now()+'_'+i)),name:l.name,products:l.products.map(p=>({title:String(p.title||'Без названия'),description:String(p.description||''),price:String(p.price||'0 ₽')}))}));
+        catalogData=imported.map((l,i)=>({id:String(l.id||('import_'+Date.now()+'_'+i)),name:l.name,products:l.products.map(p=>({title:String(p.title||'Без названия'),description:String(p.description||''),price:String(p.price||'0 ₽'),image:String(p.image||imageForTitle(p.title||''))}))}));
         activeListId=catalogData[0]?.id||null; save(); render(); alert('Каталог импортирован.');
       } catch { alert('Не удалось импортировать файл. Проверьте формат JSON.'); }
       e.target.value='';

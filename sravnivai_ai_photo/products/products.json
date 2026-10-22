@@ -1,0 +1,236 @@
+[
+  {
+    "id": "list_1",
+    "name": "Избранное",
+    "products": [
+      {
+        "title": "Беспроводные наушники",
+        "description": "Качественный звук и активное шумоподавление.",
+        "price": "4 990 ₽",
+        "image": "products/images/headphones.jpg"
+      },
+      {
+        "title": "Умные часы",
+        "description": "Отслеживание активности и уведомления со смартфона.",
+        "price": "8 500 ₽",
+        "image": "products/images/watch.jpg"
+      }
+    ]
+  },
+  {
+    "id": "demo_1",
+    "name": "Электроника",
+    "products": [
+      {
+        "title": "Смартфон Samsung Galaxy A55",
+        "description": "Смартфон с ярким экраном и камерой высокого разрешения.",
+        "price": "34 990 ₽",
+        "image": "products/images/smartphone.jpg"
+      },
+      {
+        "title": "Ноутбук Lenovo IdeaPad Slim 3",
+        "description": "Ноутбук для учёбы, работы и повседневных задач.",
+        "price": "49 990 ₽",
+        "image": "products/images/laptop.jpg"
+      },
+      {
+        "title": "Планшет Xiaomi Redmi Pad SE",
+        "description": "Планшет для видео, чтения и учёбы.",
+        "price": "17 990 ₽",
+        "image": "products/images/laptop.jpg"
+      },
+      {
+        "title": "Игровая мышь Logitech G102",
+        "description": "Проводная мышь с настраиваемой подсветкой.",
+        "price": "2 490 ₽",
+        "image": "products/images/laptop.jpg"
+      },
+      {
+        "title": "Механическая клавиатура Redragon Kumara",
+        "description": "Компактная клавиатура для игр и набора текста.",
+        "price": "3 990 ₽",
+        "image": "products/images/laptop.jpg"
+      }
+    ]
+  },
+  {
+    "id": "demo_2",
+    "name": "Одежда и обувь",
+    "products": [
+      {
+        "title": "Однотонное пальто прямого кроя",
+        "description": "Базовое демисезонное пальто в минималистичном стиле.",
+        "price": "5 990 ₽",
+        "image": "products/images/clothing.jpg"
+      },
+      {
+        "title": "Белая базовая футболка",
+        "description": "Хлопковая футболка свободного кроя.",
+        "price": "990 ₽",
+        "image": "products/images/clothing.jpg"
+      },
+      {
+        "title": "Прямые синие джинсы",
+        "description": "Повседневные джинсы с высокой посадкой.",
+        "price": "2 790 ₽",
+        "image": "products/images/clothing.jpg"
+      },
+      {
+        "title": "Чёрные кроссовки",
+        "description": "Универсальные кроссовки для прогулок.",
+        "price": "3 490 ₽",
+        "image": "products/images/fashion.jpg"
+      },
+      {
+        "title": "Кожаная куртка-косуха",
+        "description": "Куртка в байкерском стиле с металлической фурнитурой.",
+        "price": "6 990 ₽",
+        "image": "products/images/clothing.jpg"
+      }
+    ]
+  },
+  {
+    "id": "demo_3",
+    "name": "Дом и уют",
+    "products": [
+      {
+        "title": "Настольная LED-лампа",
+        "description": "Лампа с регулировкой яркости для рабочего стола.",
+        "price": "1 790 ₽",
+        "image": "products/images/home.jpg"
+      },
+      {
+        "title": "Керамическая кружка 350 мл",
+        "description": "Глазурованная кружка для чая и кофе.",
+        "price": "490 ₽",
+        "image": "products/images/home.jpg"
+      },
+      {
+        "title": "Мягкий плед",
+        "description": "Уютный плед для дивана или кровати.",
+        "price": "1 290 ₽",
+        "image": "products/images/home.jpg"
+      },
+      {
+        "title": "Органайзер для косметики",
+        "description": "Настольный органайзер с несколькими отделениями.",
+        "price": "890 ₽",
+        "image": "products/images/home.jpg"
+      },
+      {
+        "title": "Комплект постельного белья",
+        "description": "Комплект из приятной к телу ткани для двуспальной кровати.",
+        "price": "3 490 ₽",
+        "image": "products/images/home.jpg"
+      }
+    ]
+  },
+  {
+    "id": "demo_4",
+    "name": "Красота и уход",
+    "products": [
+      {
+        "title": "Увлажняющий крем для лица",
+        "description": "Крем для ежедневного ухода за кожей.",
+        "price": "1 190 ₽",
+        "image": "products/images/beauty.jpg"
+      },
+      {
+        "title": "Тушь для ресниц",
+        "description": "Тушь для объёма и разделения ресниц.",
+        "price": "790 ₽",
+        "image": "products/images/beauty.jpg"
+      },
+      {
+        "title": "Увлажняющий бальзам для губ",
+        "description": "Бальзам для ежедневного ухода за губами.",
+        "price": "350 ₽",
+        "image": "products/images/beauty.jpg"
+      },
+      {
+        "title": "Парфюмированный спрей",
+        "description": "Лёгкий аромат для повседневного использования.",
+        "price": "1 490 ₽",
+        "image": "products/images/beauty.jpg"
+      },
+      {
+        "title": "Расчёска для волос",
+        "description": "Расчёска для бережного распутывания волос.",
+        "price": "590 ₽",
+        "image": "products/images/beauty.jpg"
+      }
+    ]
+  },
+  {
+    "id": "demo_5",
+    "name": "Спорт и отдых",
+    "products": [
+      {
+        "title": "Йога-коврик",
+        "description": "Нескользящий коврик для растяжки и домашних тренировок.",
+        "price": "1 590 ₽",
+        "image": "products/images/fitness.jpg"
+      },
+      {
+        "title": "Бутылка для воды 750 мл",
+        "description": "Многоразовая бутылка для тренировок и прогулок.",
+        "price": "690 ₽",
+        "image": "products/images/fitness.jpg"
+      },
+      {
+        "title": "Рюкзак городской",
+        "description": "Вместительный рюкзак для учёбы и коротких поездок.",
+        "price": "2 490 ₽",
+        "image": "products/images/fashion.jpg"
+      },
+      {
+        "title": "Скакалка спортивная",
+        "description": "Скакалка с регулируемой длиной для кардиотренировок.",
+        "price": "390 ₽",
+        "image": "products/images/fitness.jpg"
+      },
+      {
+        "title": "Фитнес-резинки набор",
+        "description": "Набор эластичных лент для домашних упражнений.",
+        "price": "790 ₽",
+        "image": "products/images/fitness.jpg"
+      }
+    ]
+  },
+  {
+    "id": "demo_6",
+    "name": "Аксессуары",
+    "products": [
+      {
+        "title": "Солнцезащитные очки",
+        "description": "Очки в универсальной оправе для солнечной погоды.",
+        "price": "1 490 ₽",
+        "image": "products/images/fashion.jpg"
+      },
+      {
+        "title": "Наручные часы классические",
+        "description": "Лаконичные часы на каждый день.",
+        "price": "2 990 ₽",
+        "image": "products/images/watch.jpg"
+      },
+      {
+        "title": "Сумка через плечо",
+        "description": "Компактная сумка для телефона, ключей и мелочей.",
+        "price": "1 790 ₽",
+        "image": "products/images/fashion.jpg"
+      },
+      {
+        "title": "Кошелёк компактный",
+        "description": "Небольшой кошелёк с отделениями для карт.",
+        "price": "990 ₽",
+        "image": "products/images/fashion.jpg"
+      },
+      {
+        "title": "Чехол для смартфона",
+        "description": "Защитный чехол с нескользящей поверхностью.",
+        "price": "590 ₽",
+        "image": "products/images/smartphone.jpg"
+      }
+    ]
+  }
+]

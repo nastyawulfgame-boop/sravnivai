@@ -202,14 +202,10 @@
             background-color: #2d3748;
             color: #3498db;
         }
-            .page-nav { position: fixed; top: 18px; left: 18px; display:flex; gap:10px; z-index:5; }
-        .page-nav a { text-decoration:none; color:#3498db; background:#fff; padding:10px 14px; border-radius:999px; box-shadow:0 4px 14px rgba(0,0,0,.08); font-size:14px; font-weight:600; }
-        .page-nav a:hover { background:#edf6fc; }
-        @media(max-width:520px) { .page-nav { top:10px; left:10px; } .page-nav a { padding:8px 10px; font-size:12px; } .auth-container { margin-top:55px; } }
+        @media(max-width:520px) { .auth-container { margin:16px; } }
     </style>
 </head>
 <body>
-    <nav class="page-nav" aria-label="Навигация"><a href="index.html">Главная</a><a href="tovari.html">Каталог товаров</a></nav>
     <div class="auth-container">
         <!-- Навигация по формам -->
         <div class="tabs-nav">
@@ -255,153 +251,6 @@
         </footer>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const loginTab = document.getElementById('loginTab');
-            const registerTab = document.getElementById('registerTab');
-            const authForm = document.getElementById('authForm');
-            const submitBtn = document.getElementById('submitBtn');
-            const formTitle = document.getElementById('formTitle');
-            const toggleFooter = document.getElementById('toggleFooter');
-            const switchLink = document.getElementById('switchLink');
-            const footerText = document.getElementById('footerText');
-
-            // Поля формы
-            const nameInput = document.getElementById('name');
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
-            const confirmInput = document.getElementById('confirmPassword');
-
-            // Блоки ошибок
-            const nameError = document.getElementById('nameError');
-            const emailError = document.getElementById('emailError');
-            const passwordError = document.getElementById('passwordError');
-            const confirmError = document.getElementById('confirmError');
-
-            let isLoginMode = true;
-
-            function showLogin() {
-                isLoginMode = true;
-                loginTab.classList.add('active');
-                registerTab.classList.remove('active');
-                
-                formTitle.textContent = 'Вход в аккаунт';
-                submitBtn.textContent = 'Войти';
-                
-                document.getElementById('nameGroup').style.display = 'none';
-                document.getElementById('confirmGroup').style.display = 'none';
-                
-                toggleFooter.innerHTML = 'Нет аккаунта? <a href="#" id="switchLink">Создать аккаунт</a>';
-                updateSwitchLink();
-                
-                clearAllErrors();
-            }
-
-            function showRegister() {
-                isLoginMode = false;
-                registerTab.classList.add('active');
-                loginTab.classList.remove('active');
-                
-                formTitle.textContent = 'Создание аккаунта';
-                submitBtn.textContent = 'Создать аккаунт';
-                
-                document.getElementById('nameGroup').style.display = 'block';
-                document.getElementById('confirmGroup').style.display = 'block';
-                
-                toggleFooter.innerHTML = 'Уже есть аккаунт? <a href="#" id="switchLink">Войти</a>';
-                updateSwitchLink();
-                
-                clearAllErrors();
-            }
-
-            function updateSwitchLink() {
-                switchLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (isLoginMode) {
-                        showRegister();
-                    } else {
-                        showLogin();
-                    }
-                }, { once: true });
-            }
-
-            loginTab.addEventListener('click', showLogin);
-            registerTab.addEventListener('click', showRegister);
-
-            function showError(input, message, errorDiv) {
-                input.style.borderColor = '#e74c3c';
-                errorDiv.textContent = message;
-                errorDiv.classList.add('active');
-            }
-
-            function clearError(input, errorDiv) {
-                input.style.borderColor = '#e1e8ed';
-                errorDiv.textContent = '';
-                errorDiv.classList.remove('active');
-            }
-
-            function clearAllErrors() {
-                [emailInput, passwordInput, confirmInput, nameInput].forEach(i => i.style.borderColor = '#e1e8ed');
-                [emailError, passwordError, confirmError, nameError].forEach(e => e.classList.remove('active'));
-            }
-
-            authForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                clearAllErrors();
-                let isValid = true;
-
-                if (!isLoginMode && nameInput.value.trim().length < 2) {
-                    showError(nameInput, 'Имя должно содержать не менее 2 символов', nameError);
-                    isValid = false;
-                }
-
-                if (emailInput.value.trim().indexOf('@') === -1 || emailInput.value.trim().length < 3) {
-                    showError(emailInput, 'Введите корректный Email', emailError);
-                    isValid = false;
-                }
-
-                if (passwordInput.value.length < 6) {
-                    showError(passwordInput, 'Не менее 6 символов', passwordError);
-                    isValid = false;
-                }
-
-                if (!isLoginMode) {
-                    if (confirmInput.value !== passwordInput.value) {
-                        showError(confirmInput, 'Пароли не совпадают', confirmError);
-                        isValid = false;
-                    }
-                }
-
-                if (isValid) {
-                    submitBtn.disabled = true;
-                    submitBtn.textContent = isLoginMode ? 'Проверка...' : 'Создание...';
-
-                    setTimeout(() => {
-                        if (isLoginMode) {
-                            // После успешного входа открываем каталог товаров
-                            window.location.href = 'tovari.html';
-                            return;
-                        }
-
-                        alert(`Аккаунт создан!\nДанные:\nEmail: ${emailInput.value}`);
-                        authForm.reset();
-                        submitBtn.disabled = false;
-                        submitBtn.textContent = 'Создать аккаунт';
-                    }, 1500);
-                }
-            });
-
-            // Очистка ошибок при вводе
-            [emailInput, passwordInput, confirmInput, nameInput].forEach(input => {
-                input.addEventListener('input', () => clearError(input, 
-                    input.id === 'email' ? emailError :
-                    input.id === 'password' ? passwordError :
-                    input.id === 'confirmPassword' ? confirmError : nameError));
-            });
-
-            // Инициализация первого состояния
-            updateSwitchLink();
-        });
-    </script>
+    <script src="auth/auth.js"></script>
 </body>
 </html>
