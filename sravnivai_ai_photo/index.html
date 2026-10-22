@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сравнивай цены - покупай выгодно</title>
+    
+    <!-- ПОДКЛЮЧЕНИЕ СТИЛЕЙ -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="theme-toggle-container">
+        <button id="themeToggle" class="theme-toggle" aria-label="Переключить тему">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0 0 20 10 10 0 0 0 0-20zm0 2a8 8 0 0 1 8 8 8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm0 11a1 1 0 0 0 1-1v-4a1 1 0 0 0-2 0v4a1 1 0 0 0 1 1zm0-7a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0v-4a1 1 0 0 0-1-1z"/></svg>
+        </button>
+    </div>
+
+    <div class="hero-container">
+        <h1>Сравнивай цены — покупай выгодно</h1>
+        <p>Находи лучшие цены на нужные товары в ближайших магазинах и онлайн</p>
+        <div class="buttons-group">
+            <a href="login.html" class="cta-button btn-outline">Войти</a>
+            <a href="login.html" class="cta-button btn-primary">Регистрация</a>
+            <a href="tovari.html" class="cta-button btn-outline">Каталог товаров</a>
+        </div>
+    </div>
+
+    <script>
+        // Переключение темы
+        const themeToggle = document.getElementById('themeToggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDarkScheme.matches)) {
+            document.body.classList.add('dark-theme');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            
+            // Анимация вращения иконки
+            const icon = themeToggle.querySelector('svg');
+            icon.style.transform = 'rotate(180deg)';
+            setTimeout(() => {
+                icon.style.transform = 'rotate(0deg)';
+            }, 300);
+
+            let theme = localStorage.getItem('theme');
+            if (document.body.classList.contains('dark-theme')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>

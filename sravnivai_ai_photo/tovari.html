@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каталог товаров</title>
+  <link rel="stylesheet" href="stailestov.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">Сравнивай<span>+</span></a>
+    <nav><a href="index.html">Главная</a><a href="login.html">Войти</a></nav>
+  </header>
+  <main class="page-shell">
+    <section class="page-heading">
+      <div><p class="eyebrow">ВАШЕ ПРОСТРАНСТВО</p><h1>Каталог товаров</h1><p class="subtitle">Создавайте списки и собирайте нужные товары в одном месте.</p></div>
+      <div class="heading-mark" aria-hidden="true">▦</div>
+    </section>
+
+    <section class="ai-photo-card" aria-labelledby="ai-photo-title">
+      <div class="ai-photo-copy">
+        <p class="eyebrow">УМНЫЙ ПОИСК</p>
+        <h2 id="ai-photo-title">Найти товар по фото <span>✦ ИИ</span></h2>
+        <p class="subtitle">Загрузи фотографию — ИИ определит, что на ней, опишет товар и подскажет поисковые запросы.</p>
+      </div>
+      <form id="ai-photo-form" class="ai-photo-form">
+        <label class="ai-upload" for="ai-photo-input">
+          <span class="ai-upload-icon">＋</span>
+          <strong>Выбрать фотографию</strong>
+          <span>JPG, PNG или WebP · до 8 МБ</span>
+        </label>
+        <input id="ai-photo-input" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+        <img id="ai-photo-preview" class="ai-photo-preview" alt="Предпросмотр выбранного изображения" hidden>
+        <button id="ai-analyze-btn" class="btn btn-accent ai-analyze-btn" type="submit" disabled>Распознать товар ✨</button>
+      </form>
+      <p id="ai-photo-status" class="ai-photo-status" role="status" aria-live="polite"></p>
+      <section id="ai-photo-result" class="ai-photo-result" hidden>
+        <h3>Что удалось определить</h3>
+        <div id="ai-photo-result-text"></div>
+        <button type="button" id="ai-search-catalog" class="btn btn-light">Искать в моих списках</button>
+      </section>
+    </section>
+\n    <section class="file-controls">
+      <label for="file-input" class="btn btn-light">Импортировать JSON</label>
+      <input type="file" id="file-input" accept=".json,application/json">
+      <button class="btn btn-dark" onclick="downloadCatalog()">Экспорт каталога ↗</button>
+    </section>
+    <div class="main-container">
+      <aside class="sidebar">
+        <div class="sidebar-heading"><div><p class="eyebrow">ОРГАНИЗАЦИЯ</p><h2>Мои списки</h2></div><span class="count-pill" id="lists-count">0</span></div>
+        <ul class="list-group" id="lists-container"></ul>
+        <form class="add-list-form" id="add-list-form">
+          <input type="text" id="new-list-name" placeholder="Например, Для дома" maxlength="60" aria-label="Название нового списка">
+          <button class="btn btn-accent" type="submit" aria-label="Создать список">+</button>
+        </form>
+        <p class="sidebar-note">Списки сохраняются в этом браузере автоматически.</p>
+      </aside>
+      <section class="content-area">
+        <div class="content-header"><div><p class="eyebrow">ВАША ПОДБОРКА</p><h2 id="current-list-title">Выберите список</h2><p id="products-summary" class="subtitle">Выберите список слева или создайте новый.</p></div><button class="btn btn-accent" id="add-product-btn" onclick="addNewProduct()" style="display:none">+ Добавить товар</button></div>
+        <div class="product-grid" id="products-container"></div>
+      </section>
+    </div>
+  </main>
+  <script src="scripttov.js"></script>\n  <script src="ai-photo.js"></script>
+</body>
+</html>
